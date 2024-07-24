@@ -8,10 +8,13 @@ import json
 import re
 import pandas as pd
 from django.http import JsonResponse
+from dotenv import load_dotenv, dotenv_values
+
+load_dotenv()
 
 # AWS credentials
-aws_access_key_id = 'AKIAQ3EGPLTJJSAO2NTP'
-aws_secret_access_key = '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'
+aws_access_key_id = os.getenv("AWS_ACCESS")
+aws_secret_access_key = os.getenv("AWS_SECRET_KEY")
 
 # Initialize Textract and Comprehend clients
 textract_client = boto3.client(
