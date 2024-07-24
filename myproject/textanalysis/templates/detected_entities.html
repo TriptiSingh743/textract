@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detected Entities</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h2>Detected Entities</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Score</th>
+                    <th>Type</th>
+                    <th>Text</th>
+                    <th>Begin Offset</th>
+                    <th>End Offset</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entity in entities %}
+                <tr>
+                    <td>{{ entity.Score }}</td>
+                    <td>{{ entity.Type }}</td>
+                    <td>{{ entity.Text }}</td>
+                    <td>{{ entity.BeginOffset }}</td>
+                    <td>{{ entity.EndOffset }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5">No entities detected</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/" class="btn">Back to Upload</a>
+    </div>
+</body>
+</html>

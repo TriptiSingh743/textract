@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Text Extractor</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Image Text Extractor</h1>
+        <form id="upload-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="file" id="image" name="image" accept="image/*" required>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        <div id="results" style="display:none;">
+            <h2>Extracted Text</h2>
+            <pre id="extracted-text"></pre>
+            <button id="view-entities-btn" style="display:none;">View Detected Entities</button>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $('#upload-form').on('submit', function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url "upload_image" %}',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        if (response.error) {
+                            alert(response.error);
+                        } else {
+                            $('#results').show();
+                            $('#extracted-text').text(response.extracted_text);
+                            if (response.show_entities_button) {
+                                $('#view-entities-btn').show().click(function() {
+                                    window.location.href = '{% url "detected_entities" %}';
+                                });
+                            }
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(xhr.responseText);
+                        alert('An error occurred. Please try again.');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
