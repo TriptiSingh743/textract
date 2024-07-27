@@ -10,11 +10,10 @@ SECRET_KEY = '1kcPoA8leT/XgwVD5hHN/fe+bOMExPKtfGS1/EMl'
 
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    '127.0.0.1',       # Localhost
-    'localhost',       # Localhost
-    '52.200.92.243',  # Your public IP address
-]
+ALLOWED_HOSTS = ['52.200.92.243', 'localhost', '127.0.0.1']
+# settings.py
+SECURE_SSL_REDIRECT = False
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
