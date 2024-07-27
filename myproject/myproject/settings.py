@@ -13,7 +13,7 @@ DEBUG = False
 ALLOWED_HOSTS = [
     '127.0.0.1',       # Localhost
     'localhost',       # Localhost
-    '100.26.142.206',  # Your public IP address
+    '52.200.92.243',  # Your public IP address
 ]
 
 INSTALLED_APPS = [
