@@ -10,7 +10,8 @@ SECRET_KEY = '1kcPoA8leT/XgwVD5hHN/fe+bOMExPKtfGS1/EMl'
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['. vercel.app']
+ALLOWED_HOSTS = ['100.26.142.206', 'localhost','127.0.0.1:8000']
+
 
 
 
